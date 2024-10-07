@@ -1,34 +1,33 @@
 var User = /** @class */ (function () {
-    function User(_nome, _cognome) {
-        this.credito = 0;
-        this.numeroChiamate = 0;
-        this.nome = _nome;
-        this.cognome = _cognome;
+  function User(_nome, _cognome) {
+    this.credito = 0;
+    this.numeroChiamate = 0;
+    this.nome = _nome;
+    this.cognome = _cognome;
+  }
+  User.prototype.ricarica = function (cifra) {
+    this.credito += cifra;
+  };
+  User.prototype.chiamata = function (durataChiamata) {
+    var costoChiamata = durataChiamata * 0.2; //ho creato la variabile perché Prettier mi eliminava le tonde e il risultato era sbagliato!
+    if (this.credito - costoChiamata < 0) {
+      console.log("Impossibile effettuare la Chiamata!");
+    } else {
+      this.credito -= costoChiamata;
+      this.numeroChiamate += 1;
     }
-    User.prototype.ricarica = function (cifra) {
-        this.credito += cifra;
-    };
-    User.prototype.chiamata = function (durataChiamata) {
-        var prezzoAlMinuto = 0.2;
-        if (this.credito - durataChiamata * prezzoAlMinuto < 0) {
-            console.log("Impossibile effettuare la Chiamata!");
-        }
-        else {
-            this.credito -= durataChiamata * prezzoAlMinuto;
-            this.numeroChiamate += 1;
-        }
-    };
-    User.prototype.chiama404 = function () {
-        return this.credito;
-    };
-    User.prototype.getNumeroChiamate = function () {
-        return this.numeroChiamate;
-    };
-    User.prototype.azzeraChiamate = function () {
-        this.numeroChiamate = 0;
-    };
-    return User;
-}());
+  };
+  User.prototype.chiama404 = function () {
+    return this.credito;
+  };
+  User.prototype.getNumeroChiamate = function () {
+    return this.numeroChiamate;
+  };
+  User.prototype.azzeraChiamate = function () {
+    this.numeroChiamate = 0;
+  };
+  return User;
+})();
 var user1 = new User("Francesca", "F");
 user1.ricarica(20);
 console.log(user1);

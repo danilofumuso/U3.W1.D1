@@ -19,11 +19,11 @@ class User implements iSim {
   }
 
   chiamata(durataChiamata: number): void {
-    const prezzoAlMinuto = 0.2;
-    if (this.credito - durataChiamata * prezzoAlMinuto < 0) {
+    const costoChiamata = durataChiamata * 0.2;
+    if (this.credito - costoChiamata < 0) {
       console.log("Impossibile effettuare la Chiamata!");
     } else {
-      this.credito -= durataChiamata * prezzoAlMinuto;
+      this.credito -= costoChiamata;
       this.numeroChiamate += 1;
     }
   }
